@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neha Lakshmi Menon - 1st Birthday Celebration</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+    :root {
+        --hot-pink: #ff1493;
+        --royal-blue: #0047ab;
+        --white: #ffffff;
+        --bg-accent: #fff5fb;
+        --text: #2d3436;
+        --footer-bg: #4a0432;
+        --section-pink: #72074e;
+    }
+
+    *{
+        box-sizing:border-box;
+    }
+
+    body,html{
+        margin:0;
+        padding:0;
+        font-family:'Poppins',sans-serif;
+        background:var(--white);
+        color:var(--text);
+        overflow-x:hidden;
+        scroll-behavior:smooth;
+    }
+
+    /* FALLING HEARTS */
+
+    .heart-popper{
+        position:fixed;
+        top:-50px;
+        font-size:24px;
+        z-index:9999;
+        pointer-events:none;
+        user-select:none;
+        animation:fallDown linear forwards;
+    }
+
+    @keyframes fallDown{
+        0%{
+            transform:translateY(0) rotate(0deg);
+            opacity:1;
+        }
+
+        100%{
+            transform:translateY(110vh) rotate(360deg);
+            opacity:0;
+        }
+    }
+
+    /* ENTRANCE */
+
+    #entrance{
+        height:100vh;
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        padding:20px;
+
+        background:
+        linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+        url('birthday-cover.jpg') center/cover no-repeat;
+
+        position:fixed;
+        z-index:1000;
+
+        transition:transform 1.2s cubic-bezier(0.77,0,0.175,1);
+    }
+
+    .main-title{
+        font-family:'Great Vibes',cursive;
+        font-size:clamp(2.8rem,8vw,5rem);
+        color:white;
+        margin-bottom:25px;
+        line-height:1.2;
+    }
+
+    .sub-title{
+        color:white;
+        font-size:1rem;
+        line-height:1.8;
+        max-width:700px;
+    }
+
+    /* MAIN BANNER */
+
+    #title-banner{
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        padding:20px;
+
+        background:
+        linear-gradient(rgba(255,255,255,0.25),rgba(255,255,255,0.25)),
+        url('birthday-banner.jpg') center/cover no-repeat;
+    }
+
+    .date-text{
+        font-family:'Dancing Script',cursive;
+        font-size:2.7rem;
+        color:var(--royal-blue);
+        margin:15px 0;
+        font-weight:700;
+        text-shadow:1px 1px 3px rgba(255,255,255,0.8);
+    }
+
+    .time-highlight{
+        font-size:1.8rem;
+        font-weight:800;
+        background:linear-gradient(to right,#0047ab,#ff1493);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        margin-top:5px;
+    }
+
+    section{
+        padding:60px 20px;
+        max-width:1100px;
+        margin:0 auto;
+    }
+
+    /* COUNTDOWN */
+
+    .countdown-section{
+        background:linear-gradient(135deg,var(--royal-blue),var(--hot-pink));
+        padding:40px 10px;
+        color:white;
+        text-align:center;
+        border-radius:30px;
+        margin:20px auto;
+    }
+
+    .countdown-container{
+        display:flex;
+        justify-content:center;
+        gap:10px;
+        flex-wrap:nowrap;
+    }
+
+    .time-box{
+        width:75px;
+        height:95px;
+        border-radius:14px;
+        background:rgba(255,255,255,0.2);
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+
+        border:1px solid rgba(255,255,255,0.3);
+    }
+
+    .time-box span{
+        font-size:1.7rem;
+        font-weight:800;
+    }
+
+    .time-box div{
+        font-size:0.65rem;
+        text-transform:uppercase;
+    }
+
+    /* GALLERY */
+
+    .gallery-container{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:60px;
+        margin-top:50px;
+    }
+
+    .scroll-img{
+        width:100%;
+        max-width:500px;
+        border-radius:20px;
+        opacity:0;
+        transform:translateY(80px);
+
+        transition:
+        opacity 1.5s ease-out,
+        transform 1.5s ease-out;
+
+        box-shadow:0 15px 45px rgba(0,0,0,0.1);
+    }
+
+    .scroll-img.active{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+    /* VENUE */
+
+    .venue-card{
+        background:var(--bg-accent);
+        padding:40px 20px;
+        border-radius:30px;
+        text-align:center;
+    }
+
+    .map-box{
+        height:350px;
+        overflow:hidden;
+        border-radius:20px;
+        margin:25px 0;
+        border:5px solid white;
+        box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    iframe{
+        width:100%;
+        height:100%;
+        border:0;
+    }
+
+    /* INVITATION */
+
+    .invitation-block{
+        background:var(--section-pink);
+        color:white;
+        padding:60px 20px;
+        border-radius:30px;
+        margin:40px 20px;
+    }
+
+    .footer-flex{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:40px;
+        max-width:1200px;
+        margin:0 auto;
+    }
+
+    .footer-left{
+        flex:1;
+        text-align:center;
+    }
+
+    .footer-right{
+        flex:1;
+        width:100%;
+        max-width:400px;
+    }
+
+    .footer-right img{
+        width:100%;
+        border-radius:20px;
+        border:5px solid white;
+    }
+
+    /* FOOTER */
+
+    footer{
+        padding:30px 10px;
+        background:var(--footer-bg);
+        color:white;
+        text-align:center;
+        font-size:0.9rem;
+    }
+
+    /* BUTTON */
+
+    .btn{
+        display:inline-block;
+        padding:16px 40px;
+        border-radius:50px;
+        text-decoration:none;
+        font-weight:800;
+        background:var(--hot-pink);
+        color:white;
+        transition:0.4s;
+    }
+
+    .btn:hover{
+        background:var(--royal-blue);
+        transform:translateY(-3px);
+    }
+
+    @media(min-width:768px){
+
+        .footer-flex{
+            flex-direction:row;
+            text-align:left;
+        }
+
+        .footer-left{
+            text-align:left;
+        }
+
+        .time-box{
+            width:100px;
+            height:110px;
+        }
+
+        .time-box span{
+            font-size:2.2rem;
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="laxmiaudio.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ENTRANCE -->
+
+<<div id="entrance" style="
+    height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+    url('laxmi1.jpeg') center/cover no-repeat;
+
+    position:fixed;
+    z-index:1000;
+
+    transition:transform 1.2s cubic-bezier(0.77,0,0.175,1);
+">
+
+    <div style="
+        font-family:'Great Vibes';
+        color:white;
+        font-size:2.5rem;
+        margin-bottom:25px;
+        text-shadow:2px 2px 10px rgba(0,0,0,0.6);
+    ">
+        Our Beloved <br>
+        <span id="dynamicName">Friends & Family</span><br>
+        Cordially Invited To
+    </div>
+
+    <div class="main-title" style="
+        text-shadow:3px 3px 15px rgba(0,0,0,0.7);
+    ">
+        1st Birthday Celebration of <br>
+        Neha Lakshmi Menon
+    </div>
+
+    <div class="sub-title" style="
+        text-shadow:2px 2px 10px rgba(0,0,0,0.7);
+        max-width:700px;
+    ">
+        🎉✨ With immense joy in our hearts, we warmly invite you and your family to celebrate the 1st Birthday of our little princess 👑💖
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="openInvitation()">
+        Open Invitation
+    </button>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content" id="mainBody" style="display:none;">
+
+    <!-- TITLE SECTION -->
+
+    <section id="title-banner">
+
+        <h1 style="
+            font-family:'Great Vibes';
+            font-size:clamp(3rem,10vw,5rem);
+            color:var(--royal-blue);
+            margin:0;
+        ">
+            Neha Lakshmi Menon
+        </h1>
+
+        <p style="
+            font-weight:800;
+            color:var(--hot-pink);
+            letter-spacing:2px;
+            margin-top:10px;
+            text-transform:uppercase;
+        ">
+            1st Birthday Celebration
+        </p>
+
+        <div class="date-text">
+            June 10, 2026
+        </div>
+
+        <div class="time-highlight">
+            6:30 PM Onwards
+        </div>
+
+        <br><br>
+
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Neha+Lakshmi+Menon+1st+Birthday+Celebration&dates=20260610T130000Z/20260610T170000Z&location=Happy+Hall+Ayyappakkam+Chennai"
+           class="btn"
+           target="_blank">
+
+            Save The Date
+
+        </a>
+
+    </section>
+
+    <!-- COUNTDOWN -->
+
+    <section class="countdown-section">
+
+        <p style="
+            text-transform:uppercase;
+            letter-spacing:2px;
+            font-weight:800;
+            margin-bottom:15px;
+        ">
+            Countdown to Celebration
+        </p>
+
+        <div class="countdown-container">
+
+            <div class="time-box">
+                <span id="days">0</span>
+                <div>Days</div>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">0</span>
+                <div>Hours</div>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">0</span>
+                <div>Minutes</div>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">0</span>
+                <div>Seconds</div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MEMORIES -->
+
+    <section>
+
+        <h2 style="
+            text-align:center;
+            font-family:'Great Vibes';
+            font-size:3.5rem;
+            color:var(--hot-pink);
+        ">
+            Sweet Memories
+        </h2>
+
+        <div class="gallery-container">
+
+            <img src="laxmi5.jpeg" class="scroll-img">
+            <img src="laxmi4.jpeg" class="scroll-img">
+            <img src="laxmi3.jpeg" class="scroll-img">
+            <img src="laxmi2.jpeg" class="scroll-img">
+            <img src="laxmi1.jpeg" class="scroll-img">
+
+        </div>
+
+    </section>
+
+    <!-- VENUE -->
+
+    <section>
+
+        <div class="venue-card">
+
+            <h2 style="
+                font-family:'Great Vibes';
+                font-size:3rem;
+                color:var(--royal-blue);
+            ">
+                Venue
+            </h2>
+
+            <p style="
+                font-size:1.1rem;
+                margin-bottom:20px;
+            ">
+                Happy Hall <br>
+                Ayyappakkam, Chennai
+            </p>
+
+            <div class="map-box">
+
+                <iframe
+                    src="https://maps.google.com/maps?q=Happy+Hall+Ayyappakkam+Chennai&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+
+            </div>
+
+            <br>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=Happy+Hall+Ayyappakkam+Chennai"
+               class="btn"
+               target="_blank">
+
+               Open in Google Maps
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- INVITATION MESSAGE -->
+
+    <div class="invitation-block">
+
+    <div class="footer-flex">
+
+        <div class="footer-left">
+
+            <h2 style="
+                font-family:'Great Vibes',cursive;
+                font-size:2.8rem;
+                margin-bottom:20px;
+                color:#ffffff;
+                line-height:1.3;
+                text-shadow:2px 2px 10px rgba(0,0,0,0.3);
+            ">
+                We await your graceful presence
+                <br>
+                to bless our little princess ✨
+            </h2>
+
+            <p style="
+                font-size:1rem;
+                line-height:1.9;
+                margin-bottom:30px;
+                color:#ffeaf7;
+                font-weight:500;
+                letter-spacing:0.3px;
+            ">
+
+                One year ago, our lives were filled with
+                tiny smiles, sweet giggles, and endless love 🥰👶
+
+                <br><br>
+
+                Now it’s time to celebrate this beautiful
+                milestone with our dear family and friends 💫
+
+                <br><br>
+
+                Your presence and blessings will make
+                Neha Lakshmi Menon’s special day even more memorable 🌸💝
+
+                <br><br>
+
+                We look forward to celebrating together with
+                love, laughter, happiness, and magical memories 🎈🎊✨
+
+            </p>
+
+            <div style="
+                background:rgba(255,255,255,0.12);
+                padding:20px;
+                border-radius:22px;
+                backdrop-filter:blur(10px);
+                border:1px solid rgba(255,255,255,0.2);
+                display:inline-block;
+            ">
+
+                <p style="
+                    font-weight:800;
+                    color:#ffd6ec;
+                    font-family:'Dancing Script',cursive;
+                    font-size:1.8rem;
+                    margin-bottom:8px;
+                    letter-spacing:1px;
+                ">
+                    Invited by
+                </p>
+
+                <h3 style="
+                    font-family:'Great Vibes',cursive;
+                    font-size:2.5rem;
+                    margin:0;
+                    color:#ffffff;
+                    font-weight:normal;
+                    text-shadow:2px 2px 8px rgba(0,0,0,0.25);
+                ">
+                    Abhishek Family
+                </h3>
+
+            </div>
+
+        </div>
+
+        <div class="footer-right" style="
+            flex:1.3;
+            width:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        ">
+
+            <img src="laxmi1.jpeg" alt="Family Photo"
+                 style="
+                    width:100%;
+                    max-width:750px;
+                    height:750px;
+                    object-fit:cover;
+                    border-radius:40px;
+                    border:10px solid rgba(255,255,255,0.95);
+
+                    box-shadow:
+                    0 25px 60px rgba(0,0,0,0.4),
+                    0 0 40px rgba(255,255,255,0.25);
+                 ">
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        Designed & Developed with 💖 <br>
+        <strong>For Neha Lakshmi Menon</strong>
+
+    </footer>
+
+</div>
+
+<script>
+
+function openInvitation(){
+
+    document.getElementById('bgMusic').play().catch(e => console.log("Audio interaction required"));
+
+    document.getElementById('entrance').style.transform='translateY(-100%)';
+
+    document.getElementById('mainBody').style.display='block';
+
+    setInterval(createHeart,400);
+
+    const observer = new IntersectionObserver((entries)=>{
+
+        entries.forEach((entry)=>{
+
+            if(entry.isIntersecting){
+                entry.target.classList.add('active');
+            }
+
+        });
+
+    },{threshold:0.1});
+
+    document.querySelectorAll('.scroll-img').forEach(img => observer.observe(img));
+
+}
+
+function createHeart(){
+
+    const heart=document.createElement('div');
+
+    heart.classList.add('heart-popper');
+
+    heart.innerText=['💖','🎂','🎈','✨'][Math.floor(Math.random()*4)];
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.animationDuration=(Math.random()*2+3)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+
+}
+
+/* COUNTDOWN */
+
+const target = new Date("June 10, 2026 18:30:00").getTime();
+
+setInterval(()=>{
+
+    const now = new Date().getTime();
+
+    const diff = target - now;
+
+    if(diff > 0){
+
+        document.getElementById('days').innerText =
+        Math.floor(diff / (1000*60*60*24));
+
+        document.getElementById('hours').innerText =
+        Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+
+        document.getElementById('minutes').innerText =
+        Math.floor((diff % (1000*60*60)) / (1000*60));
+
+        document.getElementById('seconds').innerText =
+        Math.floor((diff % (1000*60)) / 1000);
+
+    }
+
+},1000);
+
+/* DYNAMIC NAME */
+
+window.addEventListener('DOMContentLoaded',()=>{
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const guestNameParam = urlParams.get('n');
+
+    if(guestNameParam){
+
+        const dynamicNameElement =
+        document.getElementById('dynamicName');
+
+        if(dynamicNameElement){
+
+            dynamicNameElement.textContent = guestNameParam;
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
